@@ -11,6 +11,14 @@ import AudioToolbox
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tenSecButton: UIButton!
+    
+    @IBOutlet weak var threeMinButton: UIButton!
+    
+    @IBOutlet weak var fiveMInButton: UIButton!
+    
+    
+    
     var timer: Timer?
     var currentSeconds = 0
     var maxSeconds = 0
@@ -18,7 +26,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tenSecButton.isExclusiveTouch = true
+        threeMinButton.isExclusiveTouch = true
+        fiveMInButton.isExclusiveTouch = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,16 +38,41 @@ class ViewController: UIViewController {
 
     @IBAction func tenSecButtonTapped(_ sender: UIButton) {
         let seconds = 10
-        maxSeconds = seconds
-        start(seconds: seconds)
+        timer?.invalidate()
+        if (maxSeconds != seconds ){
+            maxSeconds = seconds
+            start(seconds: seconds)
+            tenSecButton.isEnabled = false
+            threeMinButton.isEnabled = true
+            fiveMInButton.isEnabled = true
+            
+        }
     }
 
     @IBAction func threeMInButtonTapped(_ sender: UIButton) {
-        start(seconds: 180)
+        let seconds = 180
+        timer?.invalidate()
+
+        if (maxSeconds != seconds ){
+            maxSeconds = seconds
+            start(seconds: seconds)
+            tenSecButton.isEnabled = true
+            threeMinButton.isEnabled = false
+            fiveMInButton.isEnabled = true
+        }
     }
     
+    
     @IBAction func fiveMinButtonTapped(_ sender: UIButton) {
-        start(seconds: 300)
+        let seconds = 300
+        timer?.invalidate()
+        if (maxSeconds != seconds ){
+            maxSeconds = seconds
+            start(seconds: seconds)
+            tenSecButton.isEnabled = true
+            threeMinButton.isEnabled = true
+            fiveMInButton.isEnabled = false
+        }
     }
     
     func start(seconds:Int){
@@ -55,7 +90,7 @@ class ViewController: UIViewController {
     func update(){
         currentSeconds -= 1
         label.text = "残り\(currentSeconds)秒"
-        if(currentSeconds < 0){
+        if(currentSeconds == 0){
             timer?.invalidate()
             let soundId: SystemSoundID = 1005
             AudioServicesPlayAlertSound(soundId)

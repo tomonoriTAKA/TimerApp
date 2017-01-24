@@ -66,7 +66,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fiveMInButton" destination="TQN-lT-RaA" id="ioy-J8-ASQ"/>
                         <outlet property="label" destination="bML-bE-hen" id="9t2-c5-5oK"/>
+                        <outlet property="tenSecButton" destination="2Mw-Jm-K5M" id="yeI-XT-4JB"/>
+                        <outlet property="threeMinButton" destination="QAf-i2-8LM" id="brP-jF-3mt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
