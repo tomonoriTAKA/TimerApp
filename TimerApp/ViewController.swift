@@ -96,10 +96,5 @@ class ViewController: UIViewController {
             AudioServicesPlayAlertSound(soundId)
         }
     }
-    
-    func duplicateCheck(seconds:Int){
-        maxSeconds = seconds
-        
-    }
 }
 
